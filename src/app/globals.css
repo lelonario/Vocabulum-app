@@ -2,25 +2,368 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1d1d1f;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --border: #d2d2d7;
+  --input: #f5f5f7;
+  --primary: #007aff;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f7;
+  --secondary-foreground: #1d1d1f;
+  --muted: #f5f5f7;
+  --muted-foreground: #86868b;
+  --accent: #007aff;
+  --accent-foreground: #ffffff;
+  --destructive: #ff3b30;
+  --destructive-foreground: #ffffff;
+  --success: #34c759;
+  --warning: #ff9500;
+  
+  /* Apple's system font stack */
+  --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  
+  /* Apple shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.08), 0 10px 10px rgba(0, 0, 0, 0.04);
+  
+  /* Border radius matching Apple's design */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+[data-theme="dark"] {
+  --background: #000000;
+  --foreground: #f5f5f7;
+  --card: #1c1c1e;
+  --card-foreground: #f5f5f7;
+  --border: #38383a;
+  --input: #1c1c1e;
+  --primary: #0a84ff;
+  --primary-foreground: #ffffff;
+  --secondary: #1c1c1e;
+  --secondary-foreground: #f5f5f7;
+  --muted: #1c1c1e;
+  --muted-foreground: #98989d;
+  --accent: #0a84ff;
+  --accent-foreground: #ffffff;
+  --destructive: #ff453a;
+  --destructive-foreground: #ffffff;
+  --success: #32d74b;
+  --warning: #ff9f0a;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme]) {
+    --background: #000000;
+    --foreground: #f5f5f7;
+    --card: #1c1c1e;
+    --card-foreground: #f5f5f7;
+    --border: #38383a;
+    --input: #1c1c1e;
+    --primary: #0a84ff;
+    --primary-foreground: #ffffff;
+    --secondary: #1c1c1e;
+    --secondary-foreground: #f5f5f7;
+    --muted: #1c1c1e;
+    --muted-foreground: #98989d;
+    --accent: #0a84ff;
+    --accent-foreground: #ffffff;
+    --destructive: #ff453a;
+    --destructive-foreground: #ffffff;
+    --success: #32d74b;
+    --warning: #ff9f0a;
   }
+}
+
+* {
+  border-color: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-system);
+  font-feature-settings: 'cv01', 'cv03', 'cv04', 'cv11';
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Apple-style glass morphism */
+.glass {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .glass {
+  background: rgba(28, 28, 30, 0.8);
+}
+
+/* Apple-style buttons */
+.btn-apple {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  font-size: 15px;
+  font-weight: 590;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-apple:active {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: #0056cc;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn-secondary:hover {
+  background: #ebebf0;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: #2c2c2e;
+}
+
+/* Apple-style cards */
+.card-apple {
+  background: var(--card);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-apple:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Apple-style inputs */
+.input-apple {
+  background: var(--input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--foreground);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-apple:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.input-apple::placeholder {
+  color: var(--muted-foreground);
+}
+
+/* Apple-style typography */
+.text-title-1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.text-title-2 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.text-title-3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.text-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.text-caption {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+
+.text-footnote {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+
+/* Improved flashcard animation */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  border-radius: var(--radius-2xl);
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Progress indicators */
+.progress-bar {
+  background: var(--primary);
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Safe area for mobile devices */
+.safe-area-padding {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Apple-style navigation */
+.nav-apple {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+[data-theme="dark"] .nav-apple {
+  background: rgba(28, 28, 30, 0.8);
+}
+
+/* Improved scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* Apple-style focus states */
+.focus-ring {
+  transition: box-shadow 0.2s ease;
+}
+
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.3);
+}
+
+/* Status indicators */
+.status-success {
+  background: var(--success);
+  color: white;
+}
+
+.status-error {
+  background: var(--destructive);
+  color: white;
+}
+
+.status-warning {
+  background: var(--warning);
+  color: white;
+}
+
+/* Improved animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Apple-style selection */
+::selection {
+  background: rgba(0, 122, 255, 0.2);
+}
+
+[data-theme="dark"] ::selection {
+  background: rgba(10, 132, 255, 0.3);
 }

@@ -1,16 +1,16 @@
 'use client'
 
-import HomePage from '@/components/HomePage'
+import CreateListPage from '@/components/CreateListPage'
 import { Toaster } from 'react-hot-toast'
 
 export default function Page() {
   return (
     <>
-      <HomePage />
+      <CreateListPage />
       <Toaster
         position="top-center"
         toastOptions={{
-          duration: 4000,
+          duration: 3000,
           style: {
             borderRadius: '8px',
             background: '#333',

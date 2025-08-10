@@ -1,16 +1,16 @@
 'use client'
 
-import HomePage from '@/components/HomePage'
+import StatisticsPage from '@/components/StatisticsPage'
 import { Toaster } from 'react-hot-toast'
 
 export default function Page() {
   return (
     <>
-      <HomePage />
+      <StatisticsPage />
       <Toaster
         position="top-center"
         toastOptions={{
-          duration: 4000,
+          duration: 3000,
           style: {
             borderRadius: '8px',
             background: '#333',

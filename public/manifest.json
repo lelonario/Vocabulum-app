@@ -1,0 +1,103 @@
+{
+  "name": "Vocabulum - Vocabulary Learning",
+  "short_name": "Vocabulum",
+  "description": "A modern vocabulary learning app optimized for mobile use",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "375x812",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Study English",
+      "short_name": "English",
+      "description": "Start studying English vocabulary",
+      "url": "/study?lang=en",
+      "icons": [
+        {
+          "src": "/shortcut-english.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Study Spanish",
+      "short_name": "Spanish",
+      "description": "Start studying Spanish vocabulary",
+      "url": "/study?lang=es",
+      "icons": [
+        {
+          "src": "/shortcut-spanish.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
